@@ -7,8 +7,7 @@
     <style>
         /* --- Əsas Atmosfer --- */
         body {
-            font-family: 'Poppins', 'Segoe UI', sans-serif; /* Daha modern şrift */
-            /* Tünd, gələcəyə yönəlik arxa fon */
+            font-family: 'Poppins', 'Segoe UI', sans-serif;
             background-color: #050509;
             background-image: 
                 radial-gradient(at 10% 10%, rgba(123, 22, 255, 0.15) 0px, transparent 50%),
@@ -21,13 +20,11 @@
             min-height: 100vh;
         }
 
-        /* --- Xan Game Başlığı --- */
         h1 {
             margin-top: 40px;
             font-size: 4rem;
             text-transform: uppercase;
             letter-spacing: 5px;
-            /* Neon Göy/Bənövşəyi Effekt */
             color: #fff;
             text-shadow: 
                 0 0 10px #00f2ff,
@@ -37,10 +34,9 @@
             font-weight: 900;
         }
 
-        /* --- Slider Konteyneri --- */
         .slider-container {
             position: relative;
-            width: 90%; /* Bir az genişləndirdik */
+            width: 90%;
             max-width: 1400px;
             margin-top: 50px;
             display: flex;
@@ -61,7 +57,6 @@
             display: none;
         }
 
-        /* --- Təkmilləşdirilmiş Kart Dizaynı --- */
         .card {
             min-width: 280px;
             height: 400px;
@@ -76,21 +71,16 @@
             position: relative;
             overflow: hidden;
             border: 1px solid rgba(255, 255, 255, 0.05);
-            
-            /* Kartın arxa plan şəkli üçün tənzimləmə */
             background-size: cover;
             background-position: center;
         }
 
-        /* Kartın üzərinə gələndə (Hover) */
         .card:hover {
             transform: translateY(-10px) scale(1.02);
-            /* Parlaq Göy Neon kənar */
             border-color: #00f2ff;
             box-shadow: 0 0 30px rgba(0, 242, 255, 0.5);
         }
 
-        /* Kartın altındakı tünd qat (Mətn oxunsun deyə) */
         .card-overlay {
             position: absolute;
             bottom: 0;
@@ -101,30 +91,25 @@
             z-index: 1;
         }
 
-        /* Kartın Məzmunu */
         .card-content {
             position: relative;
-            z-index: 2; /* Overlay-in üzərində olsun */
+            z-index: 2;
         }
 
         .card h2 {
             margin: 0 0 5px 0;
             font-size: 1.5rem;
             color: #fff;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
         }
 
-        /* Əlavə etdiyimiz janr/məlumat mətni */
         .card p {
             margin: 0;
             font-size: 0.9rem;
-            color: #00f2ff; /* Neon göy */
+            color: #00f2ff;
             font-weight: bold;
             text-transform: uppercase;
-            letter-spacing: 1px;
         }
 
-        /* --- Ox Düymələri --- */
         .nav-btn {
             background: rgba(123, 22, 255, 0.2);
             border: 2px solid #7b16ff;
@@ -157,7 +142,8 @@
         <button class="nav-btn prev" onclick="scrollSlider(-1)">&#10094;</button>
         
         <div class="cards-wrapper" id="cardsWrapper">
-            <div class="card" style="background-image: url('https://via.placeholder.com/300x400/10101a/00f2ff?text=Oyun+1');" onclick="openGame('https://user.github.io/game1/')">
+            
+            <div class="card" style="background-image: url('https://via.placeholder.com/300x400/10101a/00f2ff?text=TPS+Mutant+Land');" onclick="openGame('https://serxanali.github.io/TPSmutantLand/')">
                 <div class="card-overlay"></div>
                 <div class="card-content">
                     <p>Aksiyon / RPG</p>
@@ -165,7 +151,7 @@
                 </div>
             </div>
 
-            <div class="card" style="background-image: url('https://via.placeholder.com/300x400/10101a/7b16ff?text=Oyun+2');" onclick="openGame('https://user.github.io/game1/')">
+            <div class="card" style="background-image: url('https://via.placeholder.com/300x400/10101a/7b16ff?text=Oyun+2');" onclick="openGame('#')">
                 <div class="card-overlay"></div>
                 <div class="card-content">
                     <p>Strategiya</p>
@@ -173,19 +159,11 @@
                 </div>
             </div>
 
-            <div class="card" style="background-image: url('https://via.placeholder.com/300x400/10101a/00f2ff?text=Oyun+3');" onclick="openGame('https://user.github.io/game1/')">
+            <div class="card" style="background-image: url('https://via.placeholder.com/300x400/10101a/00f2ff?text=Oyun+3');" onclick="openGame('#')">
                 <div class="card-overlay"></div>
                 <div class="card-content">
                     <p>Yarış</p>
                     <h2>Sürət Həddi</h2>
-                </div>
-            </div>
-            
-            <div class="card" style="background-image: url('https://via.placeholder.com/300x400/10101a/7b16ff?text=Oyun+4');" onclick="openGame('https://user.github.io/game1/')">
-                <div class="card-overlay"></div>
-                <div class="card-content">
-                    <p>Puzzle</p>
-                    <h2>Məntiq Tapmacası</h2>
                 </div>
             </div>
 
@@ -193,7 +171,7 @@
                 <div class="card-overlay"></div>
                 <div class="card-content">
                     <p>Tetris</p>
-                    <h2>Seher Qur</h2>
+                    <h2>Şəhər Qur</h2>
                 </div>
             </div>
         </div>
@@ -204,7 +182,6 @@
     <script>
         function scrollSlider(direction) {
             const wrapper = document.getElementById('cardsWrapper');
-            // Bir az daha sürətli skrol
             const scrollAmount = 350; 
             wrapper.scrollBy({
                 left: direction * scrollAmount,
@@ -212,8 +189,13 @@
             });
         }
 
+        // Karta klik edəndə işləyən funksiya
         function openGame(url) {
-            alert("Oyun keçidi: " + url);
+            if(url !== '#') {
+                window.location.href = url; // Linki eyni pəncərədə açır
+            } else {
+                console.log("Bu oyun üçün link hələ təyin edilməyib.");
+            }
         }
     </script>
 </body>
