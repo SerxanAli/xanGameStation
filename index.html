@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="az">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,7 +10,7 @@
         body {
             font-family: 'Poppins', 'Segoe UI', sans-serif;
             background-color: #050509;
-            background-image: 
+            background-image:
                 radial-gradient(at 10% 10%, rgba(123, 22, 255, 0.15) 0px, transparent 50%),
                 radial-gradient(at 90% 90%, rgba(0, 242, 255, 0.15) 0px, transparent 50%);
             color: white;
@@ -26,7 +27,7 @@
             text-transform: uppercase;
             letter-spacing: 5px;
             color: #fff;
-            text-shadow: 
+            text-shadow:
                 0 0 10px #00f2ff,
                 0 0 20px #00f2ff,
                 0 0 40px #7b16ff,
@@ -49,8 +50,9 @@
             scroll-behavior: smooth;
             gap: 25px;
             padding: 30px;
-            -ms-overflow-style: none;  
-            scrollbar-width: none; 
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+            width: 100%;
         }
 
         .cards-wrapper::-webkit-scrollbar {
@@ -73,6 +75,7 @@
             border: 1px solid rgba(255, 255, 255, 0.05);
             background-size: cover;
             background-position: center;
+            box-sizing: border-box;
         }
 
         .card:hover {
@@ -81,47 +84,95 @@
             box-shadow: 0 0 30px rgba(0, 242, 255, 0.5);
         }
 
-        .card {
-    position: relative;
-    overflow: hidden; /* Emoji kənara çıxmasın */
-    cursor: pointer;
-}
+        /* --- Ümumi Emoji Stili (Mərkəzdəki Böyük Emojilər) --- */
+        .card-emoji {
+            position: absolute;
+            top: 35%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 70px;
+            z-index: 2;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
 
-.zombie-emoji {
-    position: absolute;
-    top: 30%; /* Kartın yuxarı hissəsində yerləşməsi üçün */
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 60px; /* Emojinin böyüklüyü */
-    z-index: 2;
-    transition: all 0.3s ease;
-    filter: drop-shadow(0 0 10px #00f2ff); /* Neon effekti */
-    animation: zombieFloat 3s ease-in-out infinite;
-}
+        .card:hover .card-emoji {
+            font-size: 85px;
+            top: 30%;
+        }
 
-/* Mouse ilə kartın üzərinə gələndə emoji böyüsün */
-.card:hover .zombie-emoji {
-    font-size: 80px;
-    filter: drop-shadow(0 0 20px #ff0000); /* Üzərinə gələndə qırmızı neon */
-}
+        /* --- Spesifik Emoji Effektləri --- */
 
-/* Zombi hərəkət animasiyası */
-@keyframes zombieFloat {
-    0%, 100% {
-        transform: translate(-50%, -50%) rotate(-50deg);
+        /* Zombi (Mavi Neon + Qırmızı Hover) */
+        .zombie-emoji {
+            filter: drop-shadow(0 0 10px #00f2ff);
+            animation: zombieFloat 3s ease-in-out infinite;
+        }
+        .card:hover .zombie-emoji {
+            filter: drop-shadow(0 0 20px #ff0000);
+        }
+
+        /* Şahmat (Ağ/Bənövşəyi Neon) */
+        .chess-emoji {
+            color: #fff;
+            text-shadow: 0 0 10px #7b16ff, 0 0 20px #7b16ff;
+            animation: chessMove 4s ease-in-out infinite;
+        }
+
+        /* DoodleJump (Raket) (Qızılı/Narıncı Neon) */
+        .doodle-emoji {
+            filter: drop-shadow(0 0 10px #ffaa00);
+            animation: rocketFly 2s ease-in-out infinite;
+        }
+
+        /* Tetris (Bloklar) (Yaşıl/Mavi Neon) */
+        .tetris-emoji {
+            filter: drop-shadow(0 0 10px #00ff88);
+            animation: blockDrop 2.5s linear infinite;
+        }
+
+        /* --- Animasiyalar --- */
+        @keyframes zombieFloat {
+            0%, 100% { transform: translate(-50%, -50%) rotate(-5deg); }
+            50% { transform: translate(-50%, -60%) rotate(5deg); }
+        }
+
+        @keyframes chessMove {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); }
+            50% { transform: translate(-50%, -55%) scale(1.05); opacity: 0.8; }
+        }
+
+        @keyframes rocketFly {
+            0%, 100% { transform: translate(-50%, -50%) translateY(0); }
+            50% { transform: translate(-50%, -50%) translateY(-20px); }
+        }
+
+     @keyframes blockDrop {
+    0% { 
+        transform: translate(-50%, -100%); 
+        opacity: 0; 
     }
-    50% {
-        transform: translate(-50%, -60%) rotate(5deg);
+    20% { 
+        opacity: 1; 
+    }
+    80% { 
+        transform: translate(-50%, -40%); 
+        opacity: 1; 
+    }
+    100% { 
+        transform: translate(-50%, -30%); 
+        opacity: 0; 
     }
 }
 
+
+        /* --- Kartın Alt Hissəsi --- */
         .card-overlay {
             position: absolute;
             bottom: 0;
             left: 0;
             width: 100%;
             height: 50%;
-            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
             z-index: 1;
         }
 
@@ -144,6 +195,7 @@
             text-transform: uppercase;
         }
 
+        /* --- Düymələr --- */
         .nav-btn {
             background: rgba(123, 22, 255, 0.2);
             border: 2px solid #7b16ff;
@@ -166,136 +218,94 @@
         .prev { left: -30px; }
         .next { right: -30px; }
 
-.chess-piece {
-    position: absolute;
-    top: 35%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 70px;
-    z-index: 2;
-    color: #fff;
-    /* Bənövşəyi neon effekti */
-    text-shadow: 0 0 10px #7b16ff, 0 0 20px #7b16ff, 0 0 30px #7b16ff;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    animation: chessMove 4s ease-in-out infinite;
-}
-
-/* Mouse ilə üzərinə gələndə fiqur dikəlir və parlayır */
-.card:hover .chess-piece {
-    font-size: 85px;
-    top: 30%;
-    text-shadow: 0 0 15px #fff, 0 0 30px #7b16ff;
-}
-
-/* Şahmat gedişi xatırladan yüngül animasiya */
-@keyframes chessMove {
-    0%, 100% {
-        transform: translate(-50%, -50%) scale(1);
-    }
-    50% {
-        transform: translate(-50%, -55%) scale(1.05);
-        opacity: 0.8;
-    }
-}
-        
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&display=swap" rel="stylesheet">
 </head>
+
 <body>
 
     <h1>Xan Game</h1>
 
     <div class="slider-container">
         <button class="nav-btn prev" onclick="scrollSlider(-1)">&#10094;</button>
-        
-        <div class="cards-wrapper" id="cardsWrapper">
-            
-           <div class="card" style="background-image: url('https://via.placeholder.com/300x400/10101a/00f2ff?text=TPS+Mutant+Land');" onclick="openGame('https://serxanali.github.io/TPSmutantLand/')">
-    <div class="card-overlay"></div>
-    
-    <div class="zombie-emoji">🧟‍♂️</div>
 
-    <div class="card-content">
-        <p>Zombi Land</p>
-        <h2>Döyüş Ruhu</h2>
-    </div>
-</div>
+        <div class="cards-wrapper" id="cardsWrapper">
+
+            <div class="card" style="background-image: url('https://via.placeholder.com/300x400/10101a/00f2ff?text=TPS+Mutant+Land');" onclick="openGame('https://serxanali.github.io/TPSmutantLand/')">
+                <div class="card-overlay"></div>
+                <div class="card-emoji zombie-emoji">🧟‍♂️</div>
+                <div class="card-content">
+                    <p>Zombi Land</p>
+                    <h2>Döyüş Ruhu</h2>
+                </div>
+            </div>
 
             <div class="card" style="background-image: url('https://via.placeholder.com/300x400/10101a/7b16ff?text=Oyun+2');" onclick="openGame('https://serxanali.github.io/Chess2D/')">
-    <div class="card-overlay"></div>
-    
-    <div class="chess-piece">♞</div>
-
-    <div class="card-content">
-        <p>Chess</p>
-        <h2>ŞAHMAT</h2>
-    </div>
-</div>
-
-            <div class="card" style="background-image: url('https://via.placeholder.com/300x400/10101a/00f2ff?text=Oyun+3');" onclick="openGame('https://serxanali.github.io/DoodleJump/')">
                 <div class="card-overlay"></div>
+                <div class="card-emoji chess-emoji">♞</div>
+                <div class="card-content">
+                    <p>Chess</p>
+                    <h2>ŞAHMAT</h2>
+                </div>
+            </div>
+
+            <div class="card" style="background-image: url('https://via.placeholder.com/300x400/10101a/ffaa00?text=Oyun+3');" onclick="openGame('https://serxanali.github.io/DoodleJump/')">
+                <div class="card-overlay"></div>
+                <div class="card-emoji doodle-emoji">🚀</div>
                 <div class="card-content">
                     <p>DoodleJump</p>
                     <h2>Kosmosu Feth</h2>
                 </div>
             </div>
 
-            <div class="card" style="background-image: url('https://via.placeholder.com/300x400/10101a/7b16ff?text=Oyun+4');" onclick="openGame('https://serxanali.github.io/Tetris/')">
+            <div class="card" style="background-image: url('https://via.placeholder.com/300x400/10101a/00ff88?text=Oyun+4');" onclick="openGame('https://serxanali.github.io/Tetris/')">
                 <div class="card-overlay"></div>
+                <div class="card-emoji tetris-emoji">🧱</div>
                 <div class="card-content">
                     <p>Tetris</p>
                     <h2>Şəhər Qur</h2>
                 </div>
             </div>
-        </div>
 
-        </div>
+            <div class="card" style="background-image: url('https://via.placeholder.com/300x400/10101a/7b16ff?text=Yeni+Oyun');" onclick="openGame('#')">
+                <div class="card-overlay"></div>
+                <div class="card-emoji chess-emoji">❓</div>
+                <div class="card-content">
+                    <p>Yeni Oyun</p>
+                    <h2>Tezliklə...</h2>
+                </div>
+            </div>
 
-            <div class="card" style="background-image: url('https://via.placeholder.com/300x400/10101a/7b16ff?text=Oyun+2');" onclick="openGame('https://serxanali.github.io/Chess2D/')">
-    <div class="card-overlay"></div>
-    
-    <div class="chess-piece">🤡</div>
+            <div class="card" style="background-image: url('https://via.placeholder.com/300x400/10101a/00f2ff?text=Yeni+Oyun');" onclick="openGame('#')">
+                <div class="card-overlay"></div>
+                <div class="card-emoji zombie-emoji">❓</div>
+                <div class="card-content">
+                    <p>Yeni Oyun</p>
+                    <h2>Tezliklə...</h2>
+                </div>
+            </div>
 
-    <div class="card-content">
-        <p>Chess</p>
-        <h2>ŞAHMAT</h2>
-    </div>
-</div>
-
-    </div>
-
-            <div class="card" style="background-image: url('https://via.placeholder.com/300x400/10101a/7b16ff?text=Oyun+2');" onclick="openGame('https://serxanali.github.io/Chess2D/')">
-    <div class="card-overlay"></div>
-    
-    <div class="chess-piece">🐣</div>
-
-    <div class="card-content">
-        <p>Chess</p>
-        <h2>ŞAHMAT</h2>
-    </div>
-</div>
-
-        <button class="nav-btn next" onclick="scrollSlider(1)">&#10095;</button>
+        </div> <button class="nav-btn next" onclick="scrollSlider(1)">&#10095;</button>
     </div>
 
     <script>
         function scrollSlider(direction) {
             const wrapper = document.getElementById('cardsWrapper');
-            const scrollAmount = 350; 
+            const scrollAmount = 350;
             wrapper.scrollBy({
                 left: direction * scrollAmount,
                 behavior: 'smooth'
             });
         }
 
-        // Karta klik edəndə işləyən funksiya
         function openGame(url) {
-            if(url !== '#') {
-                window.location.href = url; // Linki eyni pəncərədə açır
+            if (url !== '#') {
+                window.location.href = url;
             } else {
-                console.log("Bu oyun üçün link hələ təyin edilməyib.");
+                alert("Bu oyun sahəsi hələ boşdur! Yeni oyun tezliklə əlavə olunacaq.");
             }
         }
     </script>
 </body>
+
 </html>
