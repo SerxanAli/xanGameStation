@@ -165,6 +165,39 @@
 
         .prev { left: -30px; }
         .next { right: -30px; }
+
+.chess-piece {
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 70px;
+    z-index: 2;
+    color: #fff;
+    /* Bənövşəyi neon effekti */
+    text-shadow: 0 0 10px #7b16ff, 0 0 20px #7b16ff, 0 0 30px #7b16ff;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    animation: chessMove 4s ease-in-out infinite;
+}
+
+/* Mouse ilə üzərinə gələndə fiqur dikəlir və parlayır */
+.card:hover .chess-piece {
+    font-size: 85px;
+    top: 30%;
+    text-shadow: 0 0 15px #fff, 0 0 30px #7b16ff;
+}
+
+/* Şahmat gedişi xatırladan yüngül animasiya */
+@keyframes chessMove {
+    0%, 100% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+    50% {
+        transform: translate(-50%, -55%) scale(1.05);
+        opacity: 0.8;
+    }
+}
+        
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&display=swap" rel="stylesheet">
 </head>
@@ -189,12 +222,15 @@
 </div>
 
             <div class="card" style="background-image: url('https://via.placeholder.com/300x400/10101a/7b16ff?text=Oyun+2');" onclick="openGame('https://serxanali.github.io/Chess2D/')">
-                <div class="card-overlay"></div>
-                <div class="card-content">
-                    <p>Chess</p>
-                    <h2>SAHMAT</h2>
-                </div>
-            </div>
+    <div class="card-overlay"></div>
+    
+    <div class="chess-piece">♞</div>
+
+    <div class="card-content">
+        <p>Chess</p>
+        <h2>ŞAHMAT</h2>
+    </div>
+</div>
 
             <div class="card" style="background-image: url('https://via.placeholder.com/300x400/10101a/00f2ff?text=Oyun+3');" onclick="openGame('#')">
                 <div class="card-overlay"></div>
