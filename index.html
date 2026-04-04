@@ -81,6 +81,40 @@
             box-shadow: 0 0 30px rgba(0, 242, 255, 0.5);
         }
 
+        .card {
+    position: relative;
+    overflow: hidden; /* Emoji kənara çıxmasın */
+    cursor: pointer;
+}
+
+.zombie-emoji {
+    position: absolute;
+    top: 30%; /* Kartın yuxarı hissəsində yerləşməsi üçün */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 60px; /* Emojinin böyüklüyü */
+    z-index: 2;
+    transition: all 0.3s ease;
+    filter: drop-shadow(0 0 10px #00f2ff); /* Neon effekti */
+    animation: zombieFloat 3s ease-in-out infinite;
+}
+
+/* Mouse ilə kartın üzərinə gələndə emoji böyüsün */
+.card:hover .zombie-emoji {
+    font-size: 80px;
+    filter: drop-shadow(0 0 20px #ff0000); /* Üzərinə gələndə qırmızı neon */
+}
+
+/* Zombi hərəkət animasiyası */
+@keyframes zombieFloat {
+    0%, 100% {
+        transform: translate(-50%, -50%) rotate(-50deg);
+    }
+    50% {
+        transform: translate(-50%, -60%) rotate(5deg);
+    }
+}
+
         .card-overlay {
             position: absolute;
             bottom: 0;
@@ -143,13 +177,16 @@
         
         <div class="cards-wrapper" id="cardsWrapper">
             
-            <div class="card" style="background-image: url('https://via.placeholder.com/300x400/10101a/00f2ff?text=TPS+Mutant+Land');" onclick="openGame('https://serxanali.github.io/TPSmutantLand/')">
-                <div class="card-overlay"></div>
-                <div class="card-content">
-                    <p>Zombi Land</p>
-                    <h2>Döyüş Ruhu</h2>
-                </div>
-            </div>
+           <div class="card" style="background-image: url('https://via.placeholder.com/300x400/10101a/00f2ff?text=TPS+Mutant+Land');" onclick="openGame('https://serxanali.github.io/TPSmutantLand/')">
+    <div class="card-overlay"></div>
+    
+    <div class="zombie-emoji">🧟‍♂️</div>
+
+    <div class="card-content">
+        <p>Zombi Land</p>
+        <h2>Döyüş Ruhu</h2>
+    </div>
+</div>
 
             <div class="card" style="background-image: url('https://via.placeholder.com/300x400/10101a/7b16ff?text=Oyun+2');" onclick="openGame('https://serxanali.github.io/Chess2D/')">
                 <div class="card-overlay"></div>
